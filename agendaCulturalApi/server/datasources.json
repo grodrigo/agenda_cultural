@@ -1,0 +1,18 @@
+{
+  "db": {
+    "host": "localhost",
+    "port": 27017,
+    "url": "",
+    "database": "agendaCulturalDB",
+    "password": "",
+    "name": "db",
+    "user": "",
+    "connector": "mongodb"
+  },
+  "storage": {
+    "name": "storage",
+    "connector": "loopback-component-storage",
+    "provider": "filesystem",
+    "root": "./files"
+  }
+}
