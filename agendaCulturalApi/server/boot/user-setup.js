@@ -56,7 +56,7 @@ module.exports = function(app) {
 }
 
 //login with post in customUser:
-// {"email":"admin@mydomain.com","password":"admin"}
+// {"email":"admin@mydomain.com","password":"password"}
 
 // to add custom-token and other login cappabilities look at
 //https://ambrosioni.io/2017/04/12/how-to-customize-the-loopback-authentication-process/
