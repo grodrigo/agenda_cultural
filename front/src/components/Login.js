@@ -24,6 +24,18 @@ export default class Login extends Component {
     });
   }
 
+  getProfile() {
+    let userId = JSON.parse(localStorage.getItem('jwtToken')).userId;
+    return axios.get(`${API_URL}/customUsers/${userId}`)
+    .then(response => {
+        localStorage.setItem('profile', response.data);
+        //this.setState({ item: response.data }, () => {})
+        //returning the promise
+      return response.data;
+    })
+    .catch(error => console.log(error));
+  }
+
   onSubmit = (event) => {
     event.preventDefault();
     axios.request({
@@ -38,8 +50,12 @@ export default class Login extends Component {
         // its not a jwtoken but an array //look better ways
         const token = JSON.stringify(res.data);
         localStorage.setItem('jwtToken', token);
-        let a = localStorage.getItem('jwtToken');
         setAuthToken(token);
+        let profile = this.getProfile().then(data => {
+          localStorage.setItem('profile', JSON.stringify(data));
+        });
+        localStorage.setItem('loggedIn', true);
+        //let a = localStorage.getItem('jwtToken');
         //const decoded = jwt_decode(token);
         //dispatch(setCurrentUser(decoded));
         this.props.history.push('/');

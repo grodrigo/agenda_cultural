@@ -7,6 +7,7 @@ import AddEvento from './AddEvento';
 import EditEvento from './EditEvento';
 import Login from './Login';
 import Register from './Register';
+import Logout from './Logout';
 
 const Main = () => (
   <main>
@@ -16,8 +17,9 @@ const Main = () => (
         <Route exact path='/eventos/add' component={AddEvento}/>
         <Route exact path='/eventos/edit/:id' component={EditEvento}/>
         <Route exact path='/eventos/:id' component={EventoDetails}/>
-        <Route exact path='/login' component={Login}/>
         <Route exact path='/register' component={Register}/>
+        <Route exact path='/login' component={Login}/>
+        <Route exact path='/logout' component={Logout}/>
     </Switch>
   </main>
 )

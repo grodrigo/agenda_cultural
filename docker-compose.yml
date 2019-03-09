@@ -1,0 +1,73 @@
+version: '3.6'
+
+services:
+
+  front:
+    depends_on:
+      - back
+    build:
+      context: ./front
+    volumes:
+      - './front:/usr/src/app'
+      - '/usr/src/app/node_modules'
+#      - './front/node_modules:/usr/src/app/node_modules'
+    ports:
+      - '3000:3000'
+    command: sh -c "sleep 10; yarn start"
+
+  back:
+#    container_name: back
+    depends_on:
+      - mongo
+    build:
+      context: ./agendaCulturalApi
+    volumes:
+      - './agendaCulturalApi:/usr/src/app'
+      - '/usr/src/app/node_modules'
+#      - './agendaCulturalApi/node_modules:/usr/src/app/node_modules'
+    ports:
+      - '3001:3001'
+#    command: sh -c "yarn start"
+#    command: sh -c "sleep 5; node ."
+    command: sh -c "sleep 10; yarn start"
+    environment:
+      - COMPOSE_HTTP_TIMEOUT=200
+
+  mongo:
+    image: mongo
+#    container_name: mongodb
+    ports:
+    - "27016:27017"
+    volumes:
+    - data-volume:/data/db
+
+#   tests:
+#     build: ./tests
+# #    container_name: tests
+#     depends_on:
+#       - front
+#       - back
+#       - mongo
+#     environment:
+# #      - DATABASE_URL=localhost:27016/agendaCultural
+#       - DATABASE_URL=mongo:27017/agendaCultural
+#       - FRONTEND_URL=http://front:3000
+#     volumes:
+#        - "./tests:/home/node/tests"
+# #      - "./tests/cypress:/home/node/tests/cypress"
+# #      - "./tests/report:/home/node/tests/report"
+# #    command: sh -c "sleep 5000"
+#     command: sh -c "npm test"
+
+volumes:
+  data-volume:
+
+# mongo connection:
+# mongo somewhere.mongolayer.com:10011/my_database -u username -p password
+# show collections
+# postgres: - DATABASE_URL=postgres://admin:password@db:5432/todos?sslmode=disable
+
+
+#node_modules is hidden if you doesen't copy it in Dockerfile, A workaround is to use a data volume to store all the node_modules, as data volumes copy in the data from the built docker image before the worker directory is mounted. 
+#https://stackoverflow.com/questions/30043872/docker-compose-node-modules-not-present-in-a-volume-after-npm-install-succeeds
+#      - '/usr/src/app/node_modules'

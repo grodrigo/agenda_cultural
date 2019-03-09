@@ -7,13 +7,25 @@ class EventoDetails extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            item: ''
-        }
+            item: '',
+            owner:''
+        };
+//        this.getOwner(this.props.match.params.ownerId);
     }
 
     componentWillMount() {
         this.getEvento();
     }
+
+    getOwner(ownerId) {
+        return axios.get(`${API_URL}/customUsers/${ownerId}`)
+        .then(response => {
+          this.setState({ owner: response.data }, () => {
+          });
+        })
+        .catch(error => console.log(error));
+    };
+
     getEvento() {
         let eventoId = this.props.match.params.id;
         axios.get(`${API_URL}/eventReviews/${eventoId}`)
@@ -24,13 +36,13 @@ class EventoDetails extends Component {
         .catch(error => console.log(error));
     }
 
-  handleChange(e) {
-    // If you are using babel, you can use ES 6 dictionary syntax
-    // let change = { [e.target.name] = e.target.value }
-    let change = {}
-    change[e.target.name] = e.target.value
-    this.setState(change)
-  }
+    handleChange(e) {
+        // If you are using babel, you can use ES 6 dictionary syntax
+        // let change = { [e.target.name] = e.target.value }
+        let change = {}
+        change[e.target.name] = e.target.value
+        this.setState(change)
+    }
 
     onDelete(){
         let eventoId = this.state.item.id;
@@ -41,6 +53,14 @@ class EventoDetails extends Component {
     }
 
     render() {
+        const isMyItem = JSON.parse(localStorage.getItem('profile')).userId == this.state.item.owner;
+        let editButton;
+        let deleteButton;
+        if(isMyItem){
+            editButton = <Link className="btn" to={`/eventos/edit/${this.state.item.id}`}>Editar</Link>;
+            deleteButton = <button onClick={this.onDelete.bind(this)} className="btn red right">Borrar</button>;
+        }
+
         const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
         return (
             <div>
@@ -54,8 +74,8 @@ class EventoDetails extends Component {
                     </li>
                     <li className="collection-item">Lugar:{this.state.item.place}</li>
                 </ul>
-                <Link className="btn" to={`/eventos/edit/${this.state.item.id}`}>Editar</Link>
-                <button onClick={this.onDelete.bind(this)} className="btn red right">Borrar</button>
+                { editButton }
+                { deleteButton }
             </div>
         )
     }

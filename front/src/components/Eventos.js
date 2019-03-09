@@ -10,12 +10,14 @@ class Eventos extends Component{
             eventos: []
         }
     }
-    
+
     getEventos(){
         //promise then an arrow function
         axios.get(`${API_URL}/eventReviews`)
         .then(response => {
+            let profile = localStorage.getItem('profile');
             //console.log(response.data);
+            //console.log(profile);
             this.setState({eventos: response.data}, () =>
             {})
         })
@@ -28,20 +30,20 @@ class Eventos extends Component{
     }
 
     render(){
-            const eventoItems = this.state.eventos.map((evento, i) => {
-            return(
-                    <EventoItem key={evento.id} item={evento} />
-                )
-            })
-            return (
-                <div>
-                    <h1>Eventos</h1>
-                    <div className="row">
-                        {eventoItems}
-                    </div>
-                </div>
+        const eventoItems = this.state.eventos.map((evento, i) => {
+        return(
+                <EventoItem key={evento.id} item={evento} />
             )
-        }
+        })
+        return (
+            <div>
+                <h1>Eventos</h1>
+                <div className="row">
+                    {eventoItems}
+                </div>
+            </div>
+        )
+    }
 
 }
 

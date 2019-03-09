@@ -45,10 +45,13 @@ class EditEvento extends Component{
     }
 
   EditEvento(newEvento){
+    let userId = JSON.parse(localStorage.getItem('jwtToken')).userId;
+    userId = {"customUserId": userId };
     axios.request({
       method:'put',
       url:`${API_URL}/eventReviews/${this.state.id}`,
-      data: newEvento
+      data: { ...newEvento, ...userId }
+      //data: newEvento
     }).then(response => {
       this.props.history.push('/');
     }).catch(err => console.log(err));

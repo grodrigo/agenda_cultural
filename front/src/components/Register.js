@@ -1,6 +1,8 @@
 // Register.js
 
 import React, { Component } from 'react';
+import { API_URL } from './../constants';
+import axios from 'axios';
 
 class Register extends Component {
 
@@ -23,15 +25,31 @@ class Register extends Component {
         })
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        const user = {
-            name: this.state.name,
-            email: this.state.email,
-            password: this.state.password,
-            password_confirm: this.state.password_confirm
-        }
-        console.log(user);
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        axios.request({
+          method:'POST',
+          url:`${API_URL}/customUsers`,
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          data: JSON.stringify(this.state)
+        }).then(res => {
+          if (res.status === 200) {
+            // its not a jwtoken but an array //look better ways
+            console.log = JSON.stringify(res.data);
+            this.props.history.push('/login');
+          } else {
+            const error = new Error(res.error);
+            console.log(error);
+            throw error;
+          }
+        })
+        .catch(err => {
+          console.error(err);
+          alert('Error in signup please try again');
+        });
     }
 
     render() {

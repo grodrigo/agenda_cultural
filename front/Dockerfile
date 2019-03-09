@@ -4,6 +4,12 @@ FROM node:11-alpine
 RUN yarn global add create-react-app
 
 WORKDIR /usr/src/app
-COPY package.json .
+COPY package*.json ./
 
 RUN yarn
+
+COPY . .
+
+EXPOSE 3000
+CMD [ "yarn", "start" ]
+

@@ -1,4 +1,5 @@
 // setAuthToken.js
+//setted in setAuthToken
 
 import axios from 'axios';
 
