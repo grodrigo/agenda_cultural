@@ -44,14 +44,14 @@ export default class Login extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify(this.state)
+      data: this.state
     }).then(res => {
-      if (res.status === 200) {
+      if(res.status===200) {
         // its not a jwtoken but an array //look better ways
         const token = JSON.stringify(res.data);
         localStorage.setItem('jwtToken', token);
         setAuthToken(token);
-        let profile = this.getProfile().then(data => {
+        this.getProfile().then(data => {
           localStorage.setItem('profile', JSON.stringify(data));
         });
         localStorage.setItem('loggedIn', true);
@@ -65,7 +65,6 @@ export default class Login extends Component {
       }
     })
     .catch(err => {
-      console.error(err);
       alert('Error logging in please try again');
     });
   }
@@ -73,7 +72,8 @@ export default class Login extends Component {
   render() {
     return (
       <form onSubmit={this.onSubmit}>
-        <h1>Login Below!</h1>
+        <h1>Login</h1>
+         <span id="login_failed"></span>
         <input
           type="email"
           name="email"

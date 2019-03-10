@@ -30,13 +30,13 @@ class EventoItem extends Component{
       <div className="col s4">
         <div className="card small">
             <div className="card-image waves-effect waves-block waves-light">
-              <img className="activator" src={this.state.item.picture}/>
+              <img data-cy="picture" className="activator" src={this.state.item.picture} alt="event"/>
             </div>
             <div className="card-content">
-              <span className="card-title activator grey-text text-darken-4">{this.state.item.title}<i className="material-icons right">+</i></span>
-              <p><Link to={`/eventos/${this.state.item.id}`}>
+              <span data-cy="title" className="card-title activator grey-text text-darken-4">{this.state.item.title}<i className="material-icons right">+</i></span>
+              <p><Link to={`/eventos/${this.state.item.id}`} data-cy="detailsLink">
                 Detalles</Link></p>
-              <p>{this.state.item.place}</p>
+              <p data-cy="place">{this.state.item.place}</p>
             </div>
             <div className="card-reveal">
               <span className="card-title grey-text text-darken-4">{this.state.item.title}<i className="material-icons right">close</i></span>

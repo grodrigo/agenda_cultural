@@ -16,8 +16,11 @@ class EditEvento extends Component{
       picture:'',
       customUserId: ""
     }
+    //we could do better with props from detail
+    //console.log(this.props.location.item);
 
     this.handleInputChange = this.handleInputChange.bind(this);
+//    console.log(axios.defaults.headers.common['Authorization']);
   }
 
   componentWillMount(){
@@ -28,7 +31,7 @@ class EditEvento extends Component{
     let eventoId = this.props.match.params.id;
     axios.get(`${API_URL}/eventReviews/${eventoId}`)
     .then(response => {
-      console.log(response.data);
+      //console.log(response.data);
       this.setState({
         id: response.data.id,
         title: response.data.title,

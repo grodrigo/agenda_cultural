@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #localhost:27016/agendaCultural
 
 echo "Reseting database..."
@@ -6,12 +6,14 @@ echo "Reseting database..."
 #mongo "${DATABASE_URL}" <<EOF
 #mongo --host mongo --port 27017 agendaCultural <<EOF
 
-[[ -z "$DATABASE_URL" ]] && DATABASE_URL="localhost:27016/agendaCultural";
+[[ -z "$DATABASE_URL" ]] && DATABASE_URL="localhost:27016/agendaCulturalDB";
+ [[ $b = 5 ]] && a="$c" || a="$d"
 
 mongo "${DATABASE_URL}" <<EOF
-	db.evento.remove({});
+	db.AccessToken.remove({});
+	db.customUser.remove({});
+	db.eventReview.remove({});
 EOF
-
 #mongo --host localhost --port 27016 agendaCultural <<EOF
 	#db.evento.remove({});
 #EOF

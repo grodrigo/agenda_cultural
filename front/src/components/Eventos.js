@@ -15,9 +15,6 @@ class Eventos extends Component{
         //promise then an arrow function
         axios.get(`${API_URL}/eventReviews`)
         .then(response => {
-            let profile = localStorage.getItem('profile');
-            //console.log(response.data);
-            //console.log(profile);
             this.setState({eventos: response.data}, () =>
             {})
         })
@@ -30,15 +27,21 @@ class Eventos extends Component{
     }
 
     render(){
-        const eventoItems = this.state.eventos.map((evento, i) => {
-        return(
-                <EventoItem key={evento.id} item={evento} />
-            )
-        })
+var eventoItems;
+        if (this.state.eventos && this.state.eventos.length > 0){
+            eventoItems = this.state.eventos.map((evento, i) => {
+            return(
+                    <EventoItem key={evento.id} item={evento} />
+                )
+            })
+        }else{
+            eventoItems = <h4>No hay eventos cargados :(</h4>;
+        }
+
         return (
             <div>
                 <h1>Eventos</h1>
-                <div className="row">
+                <div className="row" data-cy="eventoList">
                     {eventoItems}
                 </div>
             </div>

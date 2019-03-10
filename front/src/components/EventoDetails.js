@@ -10,10 +10,6 @@ class EventoDetails extends Component {
             item: '',
             owner:''
         };
-//        this.getOwner(this.props.match.params.ownerId);
-    }
-
-    componentWillMount() {
         this.getEvento();
     }
 
@@ -31,7 +27,9 @@ class EventoDetails extends Component {
         axios.get(`${API_URL}/eventReviews/${eventoId}`)
         .then(response => {
             this.setState({ item: response.data }, () => {
-            })
+            });
+            this.getOwner(response.data.customUserId);
+
         })
         .catch(error => console.log(error));
     }
@@ -53,26 +51,32 @@ class EventoDetails extends Component {
     }
 
     render() {
-        const isMyItem = JSON.parse(localStorage.getItem('profile')).userId == this.state.item.owner;
+        const profile = JSON.parse(localStorage.getItem('profile'));
+        const isMyItem = profile? profile.id === this.state.item.customUserId:false;
         let editButton;
         let deleteButton;
         if(isMyItem){
-            editButton = <Link className="btn" to={`/eventos/edit/${this.state.item.id}`}>Editar</Link>;
-            deleteButton = <button onClick={this.onDelete.bind(this)} className="btn red right">Borrar</button>;
+            editButton = <Link data-cy="editLink" className="btn" to={{
+                pathname: `/eventos/edit/${this.state.item.id}`,
+                item: this.state.item
+            }}>Editar</Link>;
+            deleteButton = <button data-cy="deleteButton" onClick={this.onDelete.bind(this)} className="btn red right">Borrar</button>;
         }
 
         const DATE_OPTIONS = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
         return (
             <div>
                 <Link className="btn grey" to="/">Back</Link>
-                <h1>{this.state.item.title}</h1>
-                <img src={this.state.item.picture}/>
-                <p>{this.state.item.description}</p>
+                <h1 data-cy="title">{this.state.item.title}</h1>
+                <img data-cy="picture" src={this.state.item.picture} alt="item"/>
+                <p data-cy="description">{this.state.item.description}</p>
                 <ul className="collection">
-                    <li className="collection-item">Fecha: {
+                    <li data-cy="date" className="collection-item">Fecha: {
                         (new Date(this.state.item.date)).toLocaleDateString('es-AR', DATE_OPTIONS)}
                     </li>
-                    <li className="collection-item">Lugar:{this.state.item.place}</li>
+                    <li data-cy="place" className="collection-item">Lugar: {this.state.item.place}</li>
+                    <li data-cy="author" className="collection-item">Autor: {this.state.owner.name}</li>
+                    <li data-cy="email" className="collection-item">Contacto: {this.state.owner.email}</li>
                 </ul>
                 { editButton }
                 { deleteButton }

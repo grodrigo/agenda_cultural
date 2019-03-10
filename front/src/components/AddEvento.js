@@ -52,7 +52,7 @@ class AddEvento extends Component {
                 <h1>Agregar Evento</h1>
                 <form onSubmit={this.handleSubmit}>
                     <div className="input-field">
-                        <input type="text" name="title" value={this.state.title} 
+                        <input type="text" name="title" required value={this.state.title} 
                             onChange={this.handleInputChange.bind(this)}/>
                             <label htmlFor="title">Título</label>
                     </div>
@@ -62,17 +62,17 @@ class AddEvento extends Component {
                             <label htmlFor="description">Descripción</label>
                     </div>
                     <div className="input-field">
-                        <input type="date" name="date"  value={this.state.date} 
+                        <input type="date" name="date" required value={this.state.date} 
                             onChange={this.handleInputChange.bind(this)} />
                         <label htmlFor="date">Fecha</label>
                     </div>
                     <div className="input-field">
-                        <input type="text" name="place"  value={this.state.place} 
+                        <input type="text" name="place" required value={this.state.place} 
                             onChange={this.handleInputChange.bind(this)} />
                         <label htmlFor="place">Lugar</label>
                     </div>
                     <div className="input-field">
-                        <input type="text" name="picture"  value={this.state.picture} 
+                        <input type="text" name="picture" value={this.state.picture} 
                             onChange={this.handleInputChange.bind(this)} />
                         <label htmlFor="picture">Imágen (URL)</label>
                     </div>

@@ -59,6 +59,7 @@ class Register extends Component {
             <form onSubmit={ this.handleSubmit }>
                 <div className="form-group">
                     <input
+                    required
                     type="text"
                     placeholder="Name"
                     className="form-control"
@@ -69,6 +70,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                     <input
+                    required
                     type="email"
                     placeholder="Email"
                     className="form-control"
@@ -79,6 +81,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                     <input
+                    required
                     type="password"
                     placeholder="Password"
                     className="form-control"
@@ -89,6 +92,7 @@ class Register extends Component {
                 </div>
                 <div className="form-group">
                     <input
+                    required
                     type="password"
                     placeholder="Confirm Password"
                     className="form-control"

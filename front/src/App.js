@@ -17,7 +17,9 @@ class App extends React.Component {
   }
 
   render() {
-    let loggedIn = localStorage.getItem('loggedIn', loggedIn);
+    let loggedIn = localStorage.getItem('loggedIn');
+    let myprofile = JSON.parse(localStorage.getItem('profile'));
+
     let buttonAddEvent;
     if (loggedIn){
       buttonAddEvent = <div className="fixed-action-btn">
@@ -28,9 +30,9 @@ class App extends React.Component {
     }
     return (
       <div>
-        <Navbar loggedIn={loggedIn}/>
+        <Navbar loggedIn={loggedIn} profile={myprofile} />
         <div className="container">
-          <Main />
+          <Main loggedIn={loggedIn} profile={myprofile} />
         {buttonAddEvent}
         </div>
       </div>

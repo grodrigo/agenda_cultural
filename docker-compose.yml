@@ -16,7 +16,6 @@ services:
     command: sh -c "sleep 10; yarn start"
 
   back:
-#    container_name: back
     depends_on:
       - mongo
     build:
@@ -27,40 +26,33 @@ services:
 #      - './agendaCulturalApi/node_modules:/usr/src/app/node_modules'
     ports:
       - '3001:3001'
-#    command: sh -c "yarn start"
-#    command: sh -c "sleep 5; node ."
     command: sh -c "sleep 10; yarn start"
     environment:
       - COMPOSE_HTTP_TIMEOUT=200
 
   mongo:
     image: mongo
-#    container_name: mongodb
     ports:
     - "27016:27017"
     volumes:
     - data-volume:/data/db
 
-#   tests:
-#     build: ./tests
-# #    container_name: tests
-#     depends_on:
-#       - front
-#       - back
-#       - mongo
-#     environment:
-# #      - DATABASE_URL=localhost:27016/agendaCultural
-#       - DATABASE_URL=mongo:27017/agendaCultural
-#       - FRONTEND_URL=http://front:3000
-#     volumes:
-#        - "./tests:/home/node/tests"
-# #      - "./tests/cypress:/home/node/tests/cypress"
-# #      - "./tests/report:/home/node/tests/report"
-# #    command: sh -c "sleep 5000"
-#     command: sh -c "npm test"
+  # tests:
+  #   build: ./tests
+  #   depends_on:
+  #     - front
+  #     - back
+  #     - mongo
+  #   environment:
+  #     - DATABASE_URL=mongo:27016/agendaCultural
+  #     - FRONTEND_URL=http://front:3000
+  #   volumes:
+  #      - "./tests:/home/node/tests"
+  #   command: sh -c "npm test"
 
 volumes:
   data-volume:
+
 
 # mongo connection:
 # mongo somewhere.mongolayer.com:10011/my_database -u username -p password
