@@ -1,0 +1,16 @@
+{
+  "baseUrl": "http://front:3000",
+  "env": {
+    "api_server":"http://back:3001/api/v1",
+    "user": "admin",
+    "pass": "secret",
+    "site" : {
+      "url" : "http://front:3000"
+    }
+  },
+	"reporter": "junit",
+	"reporterOptions": {
+  	"mochaFile": "report/output.xml",
+  	"toConsole": false
+	}
+}
