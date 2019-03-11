@@ -1,21 +1,23 @@
 # mongodb, Loopback and React with Cypress
 Base sample application with Loopback api generator backend with mongo, React on the frontend and e2e testing with Cypress
 
-## How to run it
-Requirements:  
-docker and docker-compose  
+[video](https://raw.githubusercontent.com/grodrigo/agenda_cultural/dev/tests/cypress/videos/agendaCultural_spec.js.mp4) with cypress running tests on this app
 
-just clone the repo, and do  
+(look at the dev branch, master is empty right now)  
+
+## How to run it
+- Requirements: docker and docker-compose  
+- just clone the repo, and do  
 ```
 docker-compose up -d
 ```
 Wait a moment, the database, backend and frontend take a while to start-up  
 
 ### frontend with React:  
->>>localhost:3000
+>localhost:3000
 
 ### backend with Loopback:  
->>>localhost:3001
+>localhost:3001
 
 ### test e2e with Cypress:  
 run it without docker 
