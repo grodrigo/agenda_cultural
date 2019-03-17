@@ -59,7 +59,7 @@ volumes:
 # show collections
 # postgres: - DATABASE_URL=postgres://admin:password@db:5432/todos?sslmode=disable
 
-
-#node_modules is hidden if you doesen't copy it in Dockerfile, A workaround is to use a data volume to store all the node_modules, as data volumes copy in the data from the built docker image before the worker directory is mounted. 
+#node_modules is hidden due to post installation in the Dockerfile
+# That's unamed empty volume's for,  to workaround the issue when mounting the volume.
+#Uncomment the node_module volume lines to copy it to your folder after image creation
 #https://stackoverflow.com/questions/30043872/docker-compose-node-modules-not-present-in-a-volume-after-npm-install-succeeds
-#      - '/usr/src/app/node_modules'

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="Mocha Tests" time="25.111" tests="4" failures="0">
-  <testsuite name="Root Suite" timestamp="2019-03-11T02:51:09" tests="0" failures="0" time="0">
+<testsuites name="Mocha Tests" time="17.694" tests="4" failures="0">
+  <testsuite name="Root Suite" timestamp="2019-03-16T21:19:32" tests="0" failures="0" time="0">
   </testsuite>
-  <testsuite name="Agenda Cultural Tests" timestamp="2019-03-11T02:51:09" tests="0" failures="0" time="0">
+  <testsuite name="Agenda Cultural Tests" timestamp="2019-03-16T21:19:32" tests="0" failures="0" time="0">
   </testsuite>
-  <testsuite name="First Test" timestamp="2019-03-11T02:51:09" tests="4" failures="0" time="25.111">
-    <testcase name="Agenda Cultural Tests First Test Shows a placeholder" time="10.594" classname="Shows a placeholder">
+  <testsuite name="First Test" timestamp="2019-03-16T21:19:32" tests="4" failures="0" time="17.694">
+    <testcase name="Agenda Cultural Tests First Test Shows a placeholder" time="3.858" classname="Shows a placeholder">
     </testcase>
-    <testcase name="Agenda Cultural Tests First Test Can register and login" time="4.51" classname="Can register and login">
+    <testcase name="Agenda Cultural Tests First Test Can register and login" time="4.202" classname="Can register and login">
     </testcase>
-    <testcase name="Agenda Cultural Tests First Test User1 can post and edit" time="5.048" classname="User1 can post and edit">
+    <testcase name="Agenda Cultural Tests First Test User1 can post and edit" time="4.786" classname="User1 can post and edit">
     </testcase>
-    <testcase name="Agenda Cultural Tests First Test User2 only can view" time="4.959" classname="User2 only can view">
+    <testcase name="Agenda Cultural Tests First Test User2 only can view" time="4.848" classname="User2 only can view">
     </testcase>
   </testsuite>
 </testsuites>

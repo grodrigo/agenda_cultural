@@ -9,20 +9,18 @@ RUN apt-get update && apt-get install -y \
 
 ADD . /home/node/tests
 WORKDIR /home/node/tests
+RUN npm install
 
-RUN npm install cypress --save-dev
-
+#RUN npm install cypress --save-dev
 #RUN $(npm bin)/cypress verify
 #RUN $(npm bin)/cypress run
-
-
 #RUN bash -c 'npm i cypress --save-dev'
-
+#RUN npm install mongoose --save-dev
 
 CMD ["npm", "test"]
 
-#node_modules/.bin/cypress open
 
+#node_modules/.bin/cypress open
 
 # Para correr en local:
 # probar:

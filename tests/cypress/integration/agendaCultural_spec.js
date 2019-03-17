@@ -3,7 +3,9 @@ describe('Agenda Cultural Tests', () => {
 //Cypress.config().baseUrl;
 
   beforeEach(() => {
-    cy.exec('bash resetdb.sh');
+//    console.log(Cypress.env());
+    cy.request(Cypress.env('api_host')+'/resetDB'); //api resetDB url. Windows users doen't have bash
+//    cy.exec('bash resetdb.sh'); //linux users can call this script instead the above url
     cy.fixture('user').as('user');
     cy.fixture("user2").as("user2");
     cy.fixture("events").as("events");
@@ -20,7 +22,7 @@ describe('Agenda Cultural Tests', () => {
 
   describe ('First Test', () => {
     it ('Shows a placeholder', () => {
-      cy.exec('bash resetdb.sh');
+      cy.request(Cypress.env('api_host')+'/resetDB');
       cy
       .visit('/')
       .get('[data-cy=eventoList]')
@@ -29,7 +31,8 @@ describe('Agenda Cultural Tests', () => {
       })
     })
     it ('Can register and login', () => {
-      cy.exec('bash resetdb.sh');
+      cy.request(Cypress.env('api_host')+'/resetDB');
+
       cy.get('@user').then((user) => {
         cy
           .visit("/register")

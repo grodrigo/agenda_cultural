@@ -2,6 +2,7 @@
   "baseUrl": "http://front:3000",
   "env": {
     "api_server":"http://back:3001/api/v1",
+    "api_host":"http://back:3001",
     "user": "admin",
     "pass": "secret",
     "site" : {

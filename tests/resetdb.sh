@@ -1,4 +1,5 @@
 #!/bin/bash
+#unused in cy tests, now we're using the api url
 #localhost:27016/agendaCultural
 
 echo "Reseting database..."
